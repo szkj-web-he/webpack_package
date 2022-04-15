@@ -1,5 +1,5 @@
 {
-    "name": "webpack_package",
+    "name": "@szkj-web-he/webpack",
     "version": "1.0.0",
     "dependencies": {
         "@babel/core": "^7.17.7",
@@ -49,7 +49,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/szkj-web-he/text-editor.git"
+        "url": "https://github.com/szkj-web-he/webpack_package.git"
     },
     "engines": {
         "node": ">=14"
