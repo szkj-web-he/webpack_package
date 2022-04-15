@@ -1,6 +1,6 @@
 {
     "name": "@szkj-web-he/webpack",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "dependencies": {
         "@babel/core": "^7.17.7",
         "@babel/plugin-proposal-throw-expressions": "^7.16.7",
