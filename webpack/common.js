@@ -85,14 +85,11 @@ const moduleOption = {
                         },
                     },
                 },
+                {loader: 'resolve-url-loader',},
                 {
-                    loader: "fast-sass-loader",
+                    loader: "sass-loader",
                     options: {
-                        sassOptions: {
-                            importer: [(url) => {
-                                return url.startsWith("~") ? { file: url.replace('~', path.join(rootPath, './src')) } : null;
-                            }]
-                        },
+                         sourceMap: true,
                     }
                 }
             ],
