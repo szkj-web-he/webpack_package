@@ -9,8 +9,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const command = require("./command");
 const htmlPlugin = require("./htmlPlugin");
 
-
-
 // webpack.Entry
 /**
  * 入口文件
@@ -85,13 +83,13 @@ const moduleOption = {
                         },
                     },
                 },
-                {loader: 'resolve-url-loader',},
+                { loader: "resolve-url-loader" },
                 {
                     loader: "sass-loader",
                     options: {
-                         sourceMap: true,
-                    }
-                }
+                        sourceMap: true,
+                    },
+                },
             ],
         },
         {
@@ -108,15 +106,17 @@ const moduleOption = {
                             localIdentName: "[local]",
                         },
                     },
-                }, {
+                },
+                {
                     loader: "postcss-loader",
                     options: {
                         postcssOptions: {
                             config: path.resolve(__dirname, "../postcss.config.js"),
                         },
                     },
-                }]
-        }
+                },
+            ],
+        },
     ],
 };
 
@@ -127,8 +127,8 @@ const resolve = {
     },
     extensions: [".tsx", ".ts", ".jsx", ".js"],
     // descriptionFiles: ['package.json', path.join(__dirname, "../package.json")],
-    modules: [path.resolve(rootPath, './src'), 'node_modules'],
-    mainFields: ['main', 'browser', 'module'],
+    modules: [path.resolve(rootPath, "./src"), "node_modules"],
+    mainFields: ["main", "browser", "module"],
 };
 
 const plugins = [
@@ -155,13 +155,18 @@ const plugins = [
     new webpack.ProgressPlugin({ percentBy: "entries" }),
 ];
 
+const getPublicPath = () => {
+    const arr = __dirname.split("/");
+    const name = arr[arr.length - 1];
+    return name.includes("_") ? `/${name.split("_")[1]}/` : "/";
+};
+
 const output = {
-    publicPath: "/",
+    publicPath: getPublicPath(),
     clean: true,
     path: path.join(rootPath, "/build"),
     pathinfo: false,
     charset: true,
-
 };
 
 module.exports = {
@@ -173,5 +178,5 @@ module.exports = {
     experiments: {
         asyncWebAssembly: true,
         syncWebAssembly: true,
-    }
+    },
 };
