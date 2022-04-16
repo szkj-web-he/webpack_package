@@ -156,13 +156,12 @@ const plugins = [
 ];
 
 const getPublicPath = () => {
-    const arr = __dirname.split("/");
-    const name = arr[arr.length - 1];
+    const name = path.basename(rootPath);
     return name.includes("_") ? `/${name.split("_")[1]}/` : "/";
 };
 
 const output = {
-    publicPath: getPublicPath(),
+    publicPath: command.isDev ? "/" : getPublicPath(),
     clean: true,
     path: path.join(rootPath, "/build"),
     pathinfo: false,
