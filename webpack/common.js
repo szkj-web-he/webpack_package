@@ -17,7 +17,7 @@ const htmlPlugin = require("./htmlPlugin");
  * 做兼容处理
  */
 const entry = {
-    app: ["./src/index.tsx"],
+    app: [path.join(__dirname, "../assets/js/index.js"), "./src/index.tsx"],
 };
 
 //  webpack.ModuleOptions
@@ -25,16 +25,16 @@ const moduleOption = {
     rules: [
         {
             test: /.ico$/,
-            type: "asset/source",
+            type: "asset/resource",
             generator: {
-                filename: "/[name][query]",
+                filename: "/[name][ext][query]",
             },
         },
         {
-            test: /.(woff|woff2|pdf|eot|ttf|svg)$/,
-            type: "asset/source",
+            test: /.(woff2?|pdf|eot|ttf|svg)$/,
+            type: "asset/resource",
             generator: {
-                filename: "assets/[name][query]",
+                filename: "assets/[name][ext][query]",
             },
         },
         {
@@ -69,7 +69,7 @@ const moduleOption = {
                 {
                     loader: "css-loader",
                     options: {
-                        importLoaders: 2,
+                        importLoaders: 3,
                         modules: {
                             localIdentName: "[local]",
                         },
@@ -101,7 +101,7 @@ const moduleOption = {
                 {
                     loader: "css-loader",
                     options: {
-                        importLoaders: 2,
+                        importLoaders: 1,
                         modules: {
                             localIdentName: "[local]",
                         },
