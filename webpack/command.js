@@ -5,5 +5,4 @@ module.exports = {
     isPro: command.startsWith("build"),
     isProDev: command.startsWith("build-dev"),
     isAnalysis: command.includes("analysis"),
-    isLib: command.startsWith("lib"),
 };

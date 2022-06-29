@@ -31,7 +31,7 @@ const moduleOption = {
             },
         },
         {
-            test: /.(woff2?|pdf|eot|ttf|svg)$/,
+            test: /.(woff2?|pdf|eot|ttf|svg|opentype|otf)$/,
             type: "asset/resource",
             generator: {
                 filename: "assets/[name][ext][query]",
@@ -51,14 +51,42 @@ const moduleOption = {
         },
 
         {
-            test: /.(j|t)sx?$/,
+            test: /\.js$/,
             exclude,
-            use: [
-                {
-                    loader: "babel-loader",
-                    options: BabelConfig,
-                },
-            ],
+            loader: "esbuild-loader",
+            options: {
+                loader: "js",
+                target: "es2015",
+            },
+        },
+        {
+            test: /\.jsx$/,
+            exclude,
+            loader: "esbuild-loader",
+            options: {
+                loader: "jsx",
+                target: "es2015",
+            },
+        },
+        {
+            test: /\.tsx$/,
+            exclude,
+            loader: "esbuild-loader",
+            options: {
+                loader: "tsx",
+                target: "es2015",
+                tsconfigRaw: require(path.join(rootPath, "./tsconfig.json")),
+            },
+        },
+        {
+            test: /\.ts$/,
+            exclude,
+            loader: "esbuild-loader",
+            options: {
+                loader: "ts",
+                target: "es2015",
+                tsconfigRaw: require(path.join(rootPath, "./tsconfig.json")),
+            },
         },
         {
             test: /\.(sa|sc)ss$/,
@@ -131,8 +159,33 @@ const resolve = {
     mainFields: ["main", "browser", "module"],
 };
 
+const setNodeEnvValue = () => {
+    if (command.isDev) {
+        return "development";
+    }
+
+    if (command.isProDev) {
+        return "test";
+    }
+
+    if (command.isPro) {
+        return "development_dev";
+    }
+
+    return "none";
+};
+
 const plugins = [
     new HtmlWebpackPlugin(htmlPlugin),
+
+    new webpack.DefinePlugin({
+        "process.env": { NODE_ENV: JSON.stringify(setNodeEnvValue()) },
+    }),
+
+    new ProvidePlugin({
+        React: "react",
+        ReactDom: "react-dom",
+    }),
 
     new ForkTsCheckerWebpackPlugin({
         eslint: {
