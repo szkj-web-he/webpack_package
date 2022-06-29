@@ -1,6 +1,6 @@
 {
     "name": "@szkj-web-he/webpack",
-    "version": "1.0.12",
+    "version": "1.0.13",
     "dependencies": {
         "@types/core-js": "^2.5.5",
         "@types/webpack": "^5.28.0",

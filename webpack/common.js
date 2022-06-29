@@ -3,7 +3,6 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const rootPath = require("./rootPath");
-const BabelConfig = require("./findRootBabel");
 const exclude = require("./exclude");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const command = require("./command");
@@ -182,7 +181,7 @@ const plugins = [
         "process.env": { NODE_ENV: JSON.stringify(setNodeEnvValue()) },
     }),
 
-    new ProvidePlugin({
+    new webpack.ProvidePlugin({
         React: "react",
         ReactDom: "react-dom",
     }),
