@@ -187,10 +187,6 @@ const plugins = [
     }),
 
     new ForkTsCheckerWebpackPlugin({
-        eslint: {
-            enabled: true,
-            files: "./src/**/*.{ts,tsx,js,jsx}",
-        },
         issue: {
             exclude: ({ file }) => {
                 return file?.includes("node_modules") || false;

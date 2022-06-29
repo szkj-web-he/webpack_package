@@ -30,6 +30,7 @@ const config = {
         removeAvailableModules: true,
         runtimeChunk: "single",
         minimize: true,
+        nodeEnv: false,
         minimizer: [
             new TerserPlugin({
                 extractComments: "all",

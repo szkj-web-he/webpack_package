@@ -32,6 +32,7 @@ const config = {
         removeAvailableModules: false,
         removeEmptyChunks: false,
         splitChunks: false,
+        nodeEnv: false,
     },
     cache: {
         type: "filesystem",
@@ -44,7 +45,9 @@ const config = {
         //     // 默认情况下 webpack 与 loader 是构建依赖。
         // },
     },
-    experiments: Object.assign({}, experiments,
+    experiments: Object.assign(
+        {},
+        experiments,
         // { cacheUnaffected: true }
         // { lazyCompilation: true }
     ),
