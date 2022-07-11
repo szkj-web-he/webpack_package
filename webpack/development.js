@@ -2,6 +2,7 @@ const { entry, plugins, moduleOption, resolve, output, experiments } = require("
 const exclude = require("./exclude");
 const rootPath = require("./rootPath");
 const path = require("path");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 /**
 
@@ -13,7 +14,14 @@ const path = require("path");
 const config = {
     entry,
     resolve,
-    plugins: [...plugins],
+    plugins: [
+        ...plugins,
+        new ESLintPlugin({
+            context: rootPath,
+            extensions: ["js", "ts", "tsx", "jsx"],
+            threads: true,
+        }),
+    ],
     output: {
         ...output,
         ...{
@@ -32,6 +40,7 @@ const config = {
         removeAvailableModules: false,
         removeEmptyChunks: false,
         splitChunks: false,
+        nodeEnv: false,
     },
     cache: {
         type: "filesystem",
@@ -44,7 +53,9 @@ const config = {
         //     // 默认情况下 webpack 与 loader 是构建依赖。
         // },
     },
-    experiments: Object.assign({}, experiments,
+    experiments: Object.assign(
+        {},
+        experiments,
         // { cacheUnaffected: true }
         // { lazyCompilation: true }
     ),

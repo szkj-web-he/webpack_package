@@ -1,6 +1,3 @@
-const path = require("path");
-const rootPath = require("./rootPath");
-
 module.exports = {
     title: "dataReachable",
     template: "./public/index.html",

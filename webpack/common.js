@@ -3,12 +3,11 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const rootPath = require("./rootPath");
-const BabelConfig = require("./findRootBabel");
 const exclude = require("./exclude");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const command = require("./command");
 const htmlPlugin = require("./htmlPlugin");
-
+const BabelConfig = require("./findRootBabel");
 // webpack.Entry
 /**
  * 入口文件
@@ -31,7 +30,7 @@ const moduleOption = {
             },
         },
         {
-            test: /.(woff2?|pdf|eot|ttf|svg)$/,
+            test: /.(woff2?|pdf|eot|ttf|svg|opentype|otf)$/,
             type: "asset/resource",
             generator: {
                 filename: "assets/[name][ext][query]",
@@ -126,19 +125,68 @@ const resolve = {
         "~": "/src",
     },
     extensions: [".tsx", ".ts", ".jsx", ".js"],
-    // descriptionFiles: ['package.json', path.join(__dirname, "../package.json")],
     modules: [path.resolve(rootPath, "./src"), "node_modules"],
     mainFields: ["main", "browser", "module"],
+};
+
+const setNodeEnvValue = () => {
+    if (command.isDev) {
+        return "development";
+    }
+
+    if (command.isProV1) {
+        return "v1_dev";
+    }
+    if (command.isProV2) {
+        return "v2_dev";
+    }
+    if (command.isTestV1) {
+        return "v1_test";
+    }
+    if (command.isTestV2) {
+        return "v2_test";
+    }
+
+    if (command.isPro) {
+        return "production";
+    }
+
+    return "none";
+};
+
+const setBaseName = () => {
+    if (command.isProV1) {
+        return "/v1/dev";
+    }
+    if (command.isProV2) {
+        return "/v2/dev";
+    }
+    if (command.isTestV1) {
+        return "/v1/test";
+    }
+    if (command.isTestV2) {
+        return "/v2/test";
+    }
+
+    return "/";
 };
 
 const plugins = [
     new HtmlWebpackPlugin(htmlPlugin),
 
-    new ForkTsCheckerWebpackPlugin({
-        eslint: {
-            enabled: true,
-            files: "./src/**/*.{ts,tsx,js,jsx}",
+    new webpack.DefinePlugin({
+        "process.env": {
+            NODE_ENV: JSON.stringify(setNodeEnvValue()),
+            BASENAME: JSON.stringify(setBaseName()),
         },
+    }),
+
+    new webpack.ProvidePlugin({
+        React: "react",
+        ReactDom: "react-dom",
+    }),
+
+    new ForkTsCheckerWebpackPlugin({
         issue: {
             exclude: ({ file }) => {
                 return file?.includes("node_modules") || false;
@@ -156,8 +204,20 @@ const plugins = [
 ];
 
 const getPublicPath = () => {
-    const name = path.basename(rootPath);
-    return name.includes("_") ? `/${name.split("_")[1]}/` : "/";
+    if (command.isProV1) {
+        return "/v1/dev/";
+    }
+    if (command.isProV2) {
+        return "/v2/dev/";
+    }
+    if (command.isTestV1) {
+        return "/v1/test/";
+    }
+    if (command.isTestV2) {
+        return "/v2/test/";
+    }
+
+    return "/";
 };
 
 const output = {
