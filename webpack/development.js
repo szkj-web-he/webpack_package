@@ -2,7 +2,6 @@ const { entry, plugins, moduleOption, resolve, output, experiments } = require("
 const exclude = require("./exclude");
 const rootPath = require("./rootPath");
 const path = require("path");
-const ESLintPlugin = require("eslint-webpack-plugin");
 
 /**
 
@@ -16,11 +15,6 @@ const config = {
     resolve,
     plugins: [
         ...plugins,
-        new ESLintPlugin({
-            context: rootPath,
-            extensions: ["js", "ts", "tsx", "jsx"],
-            threads: true,
-        }),
     ],
     output: {
         ...output,

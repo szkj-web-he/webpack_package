@@ -48,7 +48,16 @@ const moduleOption = {
                 },
             },
         },
-
+        {
+            test: /.jsx?$/,
+            exclude,
+            use: [
+                {
+                    loader: "babel-loader",
+                    options: BabelConfig,
+                },
+            ],
+        },
         {
             test: /.(j|t)sx?$/,
             exclude,
@@ -56,7 +65,13 @@ const moduleOption = {
                 {
                     loader: "babel-loader",
                     options: BabelConfig,
-                },
+                }, {
+                    loader: "ts-loader",
+                    options: {
+                        transpileOnly: true
+                    }
+
+                }
             ],
         },
         {
@@ -181,12 +196,12 @@ const plugins = [
         },
     }),
 
-    new webpack.ProvidePlugin({
-        React: "react",
-        ReactDom: "react-dom",
-    }),
 
     new ForkTsCheckerWebpackPlugin({
+        eslint: {
+            enabled: true,
+            files: "./src/**/*.{ts,tsx,js,jsx}",
+        },
         issue: {
             exclude: ({ file }) => {
                 return file?.includes("node_modules") || false;
