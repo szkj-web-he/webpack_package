@@ -56,7 +56,6 @@ const BabelConfig = configFile
                       runtime: "automatic",
                   },
               ],
-              "@babel/preset-typescript",
           ],
           plugins,
           cacheDirectory: command.isDev,

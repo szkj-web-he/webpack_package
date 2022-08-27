@@ -185,9 +185,9 @@ $fs_r_9: 400 0.9rem $ENCommonFamily;
 */
 @mixin c_h_1($important: false) {
     @if $important {
-        font: 500 3.4rem / 5.1rem $CNCommonFamily !important;
+        font: 500 3.4rem / 5.2rem $CNCommonFamily !important;
     } @else {
-        font: 500 3.4rem / 5.1rem $CNCommonFamily;
+        font: 500 3.4rem / 5.2rem $CNCommonFamily;
     }
     letter-spacing: 0.02rem;
 }
@@ -239,18 +239,18 @@ $fs_r_9: 400 0.9rem $ENCommonFamily;
 
 @mixin c_h_7($important: false) {
     @if $important {
-        font: 500 1.4rem / 2.1rem $CNCommonFamily !important;
+        font: 500 1.4rem / 2rem $CNCommonFamily !important;
     } @else {
-        font: 500 1.4rem / 2.1rem $CNCommonFamily;
+        font: 500 1.4rem / 2rem $CNCommonFamily;
     }
     letter-spacing: 0.02rem;
 }
 
 @mixin c_subtitle_1($important: false) {
     @if $important {
-        font: 400 3.4rem / 5.1rem $CNCommonFamily !important;
+        font: 400 3.4rem / 5.2rem $CNCommonFamily !important;
     } @else {
-        font: 400 3.4rem / 5.1rem $CNCommonFamily;
+        font: 400 3.4rem / 5.2rem $CNCommonFamily;
     }
     letter-spacing: 0.02rem;
 }
@@ -311,18 +311,18 @@ $fs_r_9: 400 0.9rem $ENCommonFamily;
 
 @mixin c_body_3($important: false) {
     @if $important {
-        font: 400 1.4rem / 2.1rem $CNCommonFamily !important;
+        font: 400 1.4rem / 2rem $CNCommonFamily !important;
     } @else {
-        font: 400 1.4rem / 2.1rem $CNCommonFamily;
+        font: 400 1.4rem / 2rem $CNCommonFamily;
     }
     letter-spacing: 0.02rem;
 }
 
 @mixin c_body_4($important: false) {
     @if $important {
-        font: 300 1.4rem / 2.1rem $CNCommonFamily !important;
+        font: 300 1.4rem / 2rem $CNCommonFamily !important;
     } @else {
-        font: 300 1.4rem / 2.1rem $CNCommonFamily;
+        font: 300 1.4rem / 2rem $CNCommonFamily;
     }
     letter-spacing: 0.02rem;
 }
@@ -338,9 +338,9 @@ $fs_r_9: 400 0.9rem $ENCommonFamily;
 
 @mixin c_label_2($important: false) {
     @if $important {
-        font: 400 1rem / 1.5rem $CNCommonFamily !important;
+        font: 400 1rem / 1.6rem $CNCommonFamily !important;
     } @else {
-        font: 400 1rem / 1.5rem $CNCommonFamily;
+        font: 400 1rem / 1.6rem $CNCommonFamily;
     }
     letter-spacing: 0.05rem;
 }

@@ -18,7 +18,9 @@ const getPublicPath = () => {
     return false;
 };
 
-// webpack.Configuration
+/**
+ * @type {import("webpack").Configuration}
+ */
 const config = {
     entry,
     resolve,
@@ -31,6 +33,7 @@ const config = {
     },
     plugins: [
         ...plugins,
+
         new MiniCssExtractPlugin({ filename: "css/[name].[contenthash].css" }),
         new CompressionPlugin({ test: /\.js(\?.*)?$/i, algorithm: "gzip" }),
     ],

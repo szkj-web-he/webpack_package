@@ -1,14 +1,11 @@
 const { entry, plugins, moduleOption, resolve, output, experiments } = require("./common");
-const exclude = require("./exclude");
 const rootPath = require("./rootPath");
 const path = require("path");
 
-/**
 
- type ConfigProps = webpack.Configuration & {
-    devServer: webpackDevServer.Configuration;
-};
-*/
+/**
+ * @type {import('webpack').Configuration & {devServer: webpackDevServer.Configuration}}
+ */
 
 const config = {
     entry,
@@ -22,9 +19,6 @@ const config = {
             chunkFilename: "js/[name].js",
             filename: "js/[name].js",
         },
-    },
-    watchOptions: {
-        ignored: exclude,
     },
     mode: "development",
     devtool: "eval-cheap-module-source-map",
