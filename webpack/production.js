@@ -33,7 +33,6 @@ const config = {
     },
     plugins: [
         ...plugins,
-
         new MiniCssExtractPlugin({ filename: "css/[name].[contenthash].css" }),
         new CompressionPlugin({ test: /\.js(\?.*)?$/i, algorithm: "gzip" }),
     ],

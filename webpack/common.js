@@ -8,7 +8,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const command = require("./command");
 const htmlPlugin = require("./htmlPlugin");
 const BabelConfig = require("./findRootBabel");
-const FontminPlugin = require("fontmin-webpack");
 // webpack.Entry
 /**
  * 入口文件
@@ -67,13 +66,7 @@ const moduleOption = {
                 {
                     loader: "babel-loader",
                     options: BabelConfig,
-                },
-                {
-                    loader: "ts-loader",
-                    options: {
-                        transpileOnly: true,
-                    },
-                },
+                }
             ],
         },
         {
@@ -203,13 +196,7 @@ const plugins = [
         },
     }),
 
-    new FontminPlugin({
-        autodetect: true, // automatically pull unicode characters from CSS
-        glyphs: ["\uf0c8" /* extra glyphs to include */],
-        // note: these settings are mutually exclusive and allowedFilesRegex has priority over skippedFilesRegex
-        allowedFilesRegex: null, // RegExp to only target specific fonts by their names
-        skippedFilesRegex: null, // RegExp to skip specific fonts by their names
-    }),
+
     new ForkTsCheckerWebpackPlugin({
         eslint: {
             enabled: true,
@@ -247,6 +234,7 @@ const getPublicPath = () => {
 
     return "/";
 };
+
 
 /**
  * @type {import('webpack').output}

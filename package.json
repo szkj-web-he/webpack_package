@@ -1,6 +1,6 @@
 {
     "name": "@szkj-web-he/webpack",
-    "version": "1.0.23",
+    "version": "1.0.27",
     "workspaces": [
         "webpack/*"
     ],
@@ -43,8 +43,7 @@
         "webpack-cli": "4.10.0",
         "webpack-dev-server": "4.10.0",
         "webpack-merge": "5.8.0",
-        "ts-loader": "9.3.1",
-        "fontmin-webpack": "4.0.0"
+        "@babel/preset-typescript":"7.18.6"
     },
     "bin": {
         "datareachable": "./bin/server.js"
