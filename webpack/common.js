@@ -8,6 +8,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const command = require("./command");
 const htmlPlugin = require("./htmlPlugin");
 const BabelConfig = require("./findRootBabel");
+const ESLintPlugin = require('eslint-webpack-plugin');
 // webpack.Entry
 /**
  * 入口文件
@@ -196,12 +197,12 @@ const plugins = [
         },
     }),
 
+new ESLintPlugin({
+    extensions:['js','ts','tsx','jsx']
+}),
 
     new ForkTsCheckerWebpackPlugin({
-        eslint: {
-            enabled: true,
-            files: "./src/**/*.{ts,tsx,js,jsx}",
-        },
+       
         issue: {
             exclude: ({ file }) => {
                 return file?.includes("node_modules") || false;
